@@ -9,33 +9,33 @@ export default function FamilySection() {
   return (
     <section
       id="family-section"
-      className="relative py-20 px-4 sm:px-6 max-w-5xl mx-auto z-10"
+      className="relative py-24 sm:py-32 px-6 sm:px-10 max-w-4xl mx-auto z-10"
       suppressHydrationWarning
     >
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-14">
-        <span className="text-[#a67831] text-2xl">❦</span>
-        <p className="text-[#95703e] font-heading text-xs tracking-[3px] uppercase mt-1">
+      <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
+        <span className="text-[#a67831] text-3xl">❦</span>
+        <p className="text-[#95703e] font-heading text-xs tracking-[3px] uppercase mt-2 font-medium">
           {weddingData.family.subheading}
         </p>
         <h2 className="text-3xl sm:text-5xl font-heading font-semibold text-[#6d1d29] tracking-tight mt-2 mb-3">
           {weddingData.family.heading}
         </h2>
         <div className="text-[#a87935] text-xs">❖</div>
-        <p className="text-[#756055] text-sm sm:text-base font-serif italic max-w-lg mx-auto mt-3">
+        <p className="text-[#756055] text-sm sm:text-base font-serif italic max-w-lg mx-auto mt-3 leading-relaxed">
           {weddingData.family.traditionalNote}
         </p>
       </div>
 
       {/* Parents Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
         {/* Groom's Parents Card */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8 }}
-          className="p-8 rounded-2xl glass-parchment-deep border border-[#b88c4a]/40 shadow-xl text-center"
+          className="p-8 sm:p-10 rounded-2xl glass-parchment-deep border border-[#b88c4a]/40 shadow-xl text-center"
         >
           <div className="w-12 h-12 mx-auto mb-3 rounded-full border border-[#ae7e32]/40 bg-[#fff9ee] flex items-center justify-center text-[#741e2b]">
             <HeartHandshake className="w-6 h-6" />
@@ -60,7 +60,7 @@ export default function FamilySection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8, delay: 0.15 }}
-          className="p-8 rounded-2xl glass-parchment-deep border border-[#b88c4a]/40 shadow-xl text-center"
+          className="p-8 sm:p-10 rounded-2xl glass-parchment-deep border border-[#b88c4a]/40 shadow-xl text-center"
         >
           <div className="w-12 h-12 mx-auto mb-3 rounded-full border border-[#ae7e32]/40 bg-[#fff9ee] flex items-center justify-center text-[#741e2b]">
             <HeartHandshake className="w-6 h-6" />

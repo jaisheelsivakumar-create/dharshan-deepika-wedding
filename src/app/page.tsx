@@ -38,7 +38,7 @@ export default function Home() {
       <MusicPlayer ref={musicPlayerRef} />
 
       {/* 3. Main Content Flow */}
-      <div className="relative z-10 flex flex-col">
+      <div className="relative z-10 flex flex-col pb-12 sm:pb-16">
         {/* Royal Cover & Hero Screen */}
         <RoyalCoverHero onOpenInvitation={handleOpenInvitation} isOpen={isOpen} />
 

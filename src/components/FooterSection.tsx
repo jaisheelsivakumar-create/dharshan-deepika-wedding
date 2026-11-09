@@ -11,7 +11,7 @@ export default function FooterSection() {
 
   return (
     <footer
-      className="relative border-t border-[#9d7434]/25 py-20 px-4 sm:px-6 bg-[radial-gradient(ellipse_at_center,_rgba(255,250,240,0.7)_0%,_rgba(248,238,229,0.95)_70%)] z-10 text-center"
+      className="relative border-t border-[#9d7434]/25 py-24 sm:py-32 px-6 sm:px-10 bg-[radial-gradient(ellipse_at_center,_rgba(255,250,240,0.7)_0%,_rgba(248,238,229,0.95)_70%)] z-10 text-center"
       suppressHydrationWarning
     >
       <div className="max-w-2xl mx-auto flex flex-col items-center">

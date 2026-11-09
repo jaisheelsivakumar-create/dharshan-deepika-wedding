@@ -27,20 +27,20 @@ export default function LocationSection() {
   return (
     <section
       id="location-section"
-      className="relative py-20 px-4 sm:px-6 max-w-5xl mx-auto z-10"
+      className="relative py-24 sm:py-32 px-6 sm:px-10 max-w-4xl mx-auto z-10"
       suppressHydrationWarning
     >
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-14">
-        <span className="text-[#a67831] text-2xl">❦</span>
-        <p className="text-[#95703e] font-heading text-xs tracking-[3px] uppercase mt-1">
+      <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
+        <span className="text-[#a67831] text-3xl">❦</span>
+        <p className="text-[#95703e] font-heading text-xs tracking-[3px] uppercase mt-2 font-medium">
           {weddingData.location.subheading}
         </p>
         <h2 className="text-3xl sm:text-5xl font-heading font-semibold text-[#6d1d29] tracking-tight mt-2 mb-3">
           {weddingData.location.heading}
         </h2>
         <div className="text-[#a87935] text-xs">❖</div>
-        <p className="text-[#756055] text-sm sm:text-base font-serif italic max-w-lg mx-auto mt-3">
+        <p className="text-[#756055] text-sm sm:text-base font-serif italic max-w-lg mx-auto mt-3 leading-relaxed">
           We eagerly look forward to welcoming you. Scan the QR code or tap the button below for turn-by-turn navigation.
         </p>
       </div>
@@ -124,7 +124,7 @@ export default function LocationSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="lg:col-span-5 flex flex-col justify-between p-7 rounded-2xl glass-parchment-deep border border-[#b88c4a]/40 shadow-xl"
+          className="lg:col-span-5 flex flex-col justify-between p-7 sm:p-9 md:p-10 rounded-2xl glass-parchment-deep border border-[#b88c4a]/40 shadow-xl"
         >
           <div>
             {/* Header Badge */}

@@ -1,66 +1,52 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import ViewportDecorations from "@/components/ViewportDecorations";
 import MusicPlayer, { MusicPlayerHandle } from "@/components/MusicPlayer";
-import RoyalCoverHero from "@/components/RoyalCoverHero";
+import HeroSection from "@/components/HeroSection";
+import WelcomeStorySection from "@/components/WelcomeStorySection";
 import EventDetails from "@/components/EventDetails";
-import FamilySection from "@/components/FamilySection";
 import LocationSection from "@/components/LocationSection";
 import BlessingsSection from "@/components/BlessingsSection";
 import FooterSection from "@/components/FooterSection";
 
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(false);
   const musicPlayerRef = useRef<MusicPlayerHandle | null>(null);
 
-  const handleOpenInvitation = () => {
-    setIsOpen(true);
-    // Start music on user gesture
+  const handleViewDetails = () => {
+    // Start music on user engagement if not already playing
     if (musicPlayerRef.current) {
       musicPlayerRef.current.playMusic();
     }
-    // Smooth scroll down to the revealed portrait section
-    setTimeout(() => {
-      const el = document.getElementById("portrait-section");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 250);
   };
 
   return (
-    <main className="relative min-h-screen bg-[#f8eee5] text-[#651c29] selection:bg-[#741e2b]/20 selection:text-[#741e2b] overflow-x-hidden">
-      {/* 1. Viewport Double Ornamental Border, Falling Petals & Cursor Sparkles */}
+    <main className="relative min-h-screen bg-[#fdfbf7] text-[#6b1e23] selection:bg-[#6b1e23]/15 selection:text-[#6b1e23] overflow-x-hidden">
+      {/* 1. Global Falling Flowers Animation (Fixed z-index -1) */}
       <ViewportDecorations />
 
-      {/* 2. Floating Music Player Controller (Top-Right) */}
+      {/* 2. Floating Circular Music Player at Bottom-Right */}
       <MusicPlayer ref={musicPlayerRef} />
 
       {/* 3. Main Content Flow */}
-      <div className="relative z-10 flex flex-col pb-12 sm:pb-16">
-        {/* Royal Cover & Hero Screen */}
-        <RoyalCoverHero onOpenInvitation={handleOpenInvitation} isOpen={isOpen} />
+      <div className="relative z-10 flex flex-col">
+        {/* Hero Section: Exact text, Invocations, Script Names, 3D Depth, CTA & Scroll to Explore */}
+        <HeroSection onViewDetails={handleViewDetails} />
 
-        {/* The revealed sections */}
-        {isOpen && (
-          <>
-            {/* Event Celebrations with 3D Parallax Tilt Cards */}
-            <EventDetails />
+        {/* Welcome / Story Section: "We Are Getting Married", Couple Photo with Parallax, Countdown */}
+        <WelcomeStorySection />
 
-            {/* Traditional Family & Parents Section */}
-            <FamilySection />
+        {/* Event Details Section: 2 Event Cards in 3D Tilt, Parents' Details */}
+        <EventDetails />
 
-            {/* Location & Navigation Section (Google Map & Authentic QR Code) */}
-            <LocationSection />
+        {/* Location & Navigation Section: Map Iframe, QR Code, Direct Button */}
+        <LocationSection />
 
-            {/* Guest Blessings & Wishes Wall */}
-            <BlessingsSection />
+        {/* Guest Blessings & Wishes Wall */}
+        <BlessingsSection />
 
-            {/* Final Blessings & Footer */}
-            <FooterSection />
-          </>
-        )}
+        {/* Final Auspicious Blessings & Footer */}
+        <FooterSection />
       </div>
     </main>
   );

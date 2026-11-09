@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Music, Volume2, VolumeX, Sparkles } from "lucide-react";
-import { weddingData } from "@/data/weddingData";
+import { invitationData } from "@/data/invitation";
 
 export interface MusicPlayerHandle {
   playMusic: () => Promise<void>;
@@ -110,7 +110,7 @@ const MusicPlayer = forwardRef<MusicPlayerHandle>((props, ref) => {
     <>
       <audio
         ref={audioRef}
-        src={weddingData.audio.src}
+        src={invitationData.assets.audioSrc}
         preload="auto"
         loop
         onEnded={() => setIsPlaying(false)}
@@ -119,26 +119,31 @@ const MusicPlayer = forwardRef<MusicPlayerHandle>((props, ref) => {
         }}
       />
 
-      {/* Floating Music Button (Fixed Top-Right like Reference) */}
-      <div className="fixed top-5 right-5 sm:top-6 sm:right-6 z-[10002]">
+      {/* Floating Circular Music Button at Bottom-Right Corner */}
+      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
         <button
           onClick={toggleMusic}
           aria-label={isPlaying ? "Pause wedding music" : "Play wedding music"}
-          className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#ae7e32]/60 flex items-center justify-center cursor-pointer backdrop-blur-md transition-all duration-300 shadow-md ${
+          className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-[#c59b4e]/70 flex items-center justify-center cursor-pointer backdrop-blur-md transition-all duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#c59b4e]/50 ${
             isPlaying
-              ? "bg-[#741e2b] text-[#ffd700] scale-105 shadow-[#5e202a]/30"
-              : "bg-[#fff9f0]/90 text-[#741d2b] hover:bg-[#fff9f0] hover:scale-105"
+              ? "bg-[#6b1e23] text-[#ffd700] scale-105 shadow-[#6b1e23]/35"
+              : "bg-[#fffcf7]/95 text-[#6b1e23] hover:bg-[#fffcf7] hover:scale-105"
           }`}
           title={isPlaying ? "Pause music" : "Play music"}
         >
+          {isPlaying && (
+            <span className="absolute -inset-1 rounded-full bg-[#c59b4e] opacity-40 blur-sm animate-ping pointer-events-none" />
+          )}
+
           {isPlaying ? (
-            <div className="flex items-end gap-0.5 h-4">
-              <span className="w-1 bg-[#ffd700] rounded-full animate-bounce [animation-delay:0ms] h-3" />
-              <span className="w-1 bg-[#ffd700] rounded-full animate-bounce [animation-delay:150ms] h-4" />
-              <span className="w-1 bg-[#ffd700] rounded-full animate-bounce [animation-delay:300ms] h-2.5" />
+            <div className="flex items-end gap-1 h-5">
+              <span className="w-1 bg-[#ffd700] rounded-full animate-bounce [animation-delay:0ms] h-3.5" />
+              <span className="w-1 bg-[#ffd700] rounded-full animate-bounce [animation-delay:150ms] h-5" />
+              <span className="w-1 bg-[#ffd700] rounded-full animate-bounce [animation-delay:300ms] h-4" />
+              <span className="w-1 bg-[#ffd700] rounded-full animate-bounce [animation-delay:450ms] h-2.5" />
             </div>
           ) : (
-            <Music className="w-5 h-5" />
+            <Music className="w-5 h-5 sm:w-6 sm:h-6" />
           )}
         </button>
       </div>

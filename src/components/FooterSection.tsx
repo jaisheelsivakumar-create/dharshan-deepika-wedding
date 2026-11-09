@@ -11,33 +11,33 @@ export default function FooterSection() {
 
   return (
     <footer
-      className="relative border-t border-[#9d7434]/25 py-24 sm:py-32 px-6 sm:px-10 bg-[radial-gradient(ellipse_at_center,_rgba(255,250,240,0.7)_0%,_rgba(248,238,229,0.95)_70%)] z-10 text-center"
+      className="relative border-t border-[#9d7434]/25 py-18 sm:py-26 px-5 sm:px-8 bg-[radial-gradient(ellipse_at_center,_rgba(255,250,240,0.7)_0%,_rgba(248,238,229,0.95)_70%)] z-10 text-center w-full"
       suppressHydrationWarning
     >
-      <div className="max-w-2xl mx-auto flex flex-col items-center">
+      <div className="max-w-xl mx-auto flex flex-col items-center">
         {/* Sacred Final Ornament */}
-        <span className="text-[#a57835] text-3xl">❦</span>
+        <span className="text-[#a57835] text-2xl sm:text-3xl">❦</span>
 
         {/* Closing Message */}
-        <h2 className="text-4xl sm:text-6xl font-script text-[#701e2a] font-normal my-4">
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-script text-[#701e2a] font-normal my-3 sm:my-4 leading-tight">
           We Await Your Gracious Presence
         </h2>
 
         {/* Couple Names */}
-        <p className="text-3xl sm:text-5xl font-script text-[#701e2a] my-2">
-          {weddingData.couple.groom.firstName} <span className="font-serif text-2xl text-[#a67835]">&amp;</span> {weddingData.couple.bride.firstName}
+        <p className="text-2xl sm:text-4xl md:text-5xl font-script text-[#701e2a] my-1 sm:my-2">
+          {weddingData.couple.groom.firstName} <span className="font-serif text-xl sm:text-2xl text-[#a67835]">&amp;</span> {weddingData.couple.bride.firstName}
         </p>
 
         {/* Dates */}
-        <p className="text-xs sm:text-sm text-[#92703e] font-heading tracking-[3px] uppercase mt-2 mb-6">
+        <p className="text-[11px] sm:text-xs text-[#92703e] font-heading tracking-[2.5px] uppercase mt-2 mb-5">
           {weddingData.couple.displayDate}
         </p>
 
         {/* Sacred Lotus Symbol */}
-        <div className="text-[#a17437] text-4xl my-2">🪷</div>
+        <div className="text-[#a17437] text-3xl sm:text-4xl my-2">🪷</div>
 
         {/* Family Blessings */}
-        <p className="text-xs sm:text-sm text-[#735d51] font-serif italic max-w-lg mx-auto my-6 leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#735d51] font-serif italic max-w-md mx-auto my-5 leading-relaxed px-2">
           {weddingData.footer.blessingsText}
         </p>
 
@@ -45,14 +45,14 @@ export default function FooterSection() {
         <button
           onClick={scrollToTop}
           aria-label="Return to top"
-          className="mt-4 flex items-center gap-2 px-6 py-2.5 rounded-sm border border-[#a67835]/50 bg-[#fff9ee] hover:bg-white text-[#701e2a] text-xs font-heading tracking-[2px] uppercase transition-all shadow-sm"
+          className="mt-3 flex items-center gap-2 px-6 py-2.5 rounded-sm border border-[#a67835]/50 bg-[#fff9ee] hover:bg-white text-[#701e2a] text-[11px] sm:text-xs font-heading tracking-[2px] uppercase transition-all shadow-sm"
         >
           <span>Return to Top</span>
           <ArrowUp className="w-3.5 h-3.5 text-[#a87831]" />
         </button>
 
         {/* Bottom Credits */}
-        <div className="mt-12 text-[11px] text-[#927767] flex items-center justify-center gap-1 font-sans">
+        <div className="mt-10 sm:mt-12 text-[10px] sm:text-[11px] text-[#927767] flex items-center justify-center gap-1 font-sans">
           <span>Crafted with</span>
           <Heart className="w-3 h-3 text-[#741e2b] fill-[#741e2b] inline" />
           <span>for Dharshan &amp; Deepika</span>

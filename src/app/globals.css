@@ -11,6 +11,11 @@
     --color-gold-antique: #ae7e32;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     background-color: #f8eee5;
     color: #651c29;
@@ -20,6 +25,8 @@
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, .font-heading {
@@ -43,7 +50,7 @@
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(174, 126, 50, 0.35);
   box-shadow: 
-    0 10px 30px rgba(94, 32, 42, 0.07),
+    0 10px 30px rgba(94, 32, 42, 0.06),
     0 1px 3px rgba(174, 126, 50, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
@@ -54,8 +61,8 @@
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(174, 126, 50, 0.45);
   box-shadow: 
-    0 20px 45px rgba(94, 32, 42, 0.12),
-    0 4px 12px rgba(174, 126, 50, 0.15),
+    0 18px 40px rgba(94, 32, 42, 0.1),
+    0 3px 10px rgba(174, 126, 50, 0.12),
     inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
@@ -76,36 +83,43 @@
 /* Sacred Arched Frame for Couple Portrait */
 .couple-image-frame {
   position: relative;
-  width: min(86vw, 360px);
-  height: min(112vw, 470px);
+  width: min(84vw, 340px);
+  height: min(115vw, 470px);
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: radial-gradient(ellipse at center, #230d14 0%, #120609 60%, #0a0305 100%);
+  border-radius: 50% 50% 44% 44%;
+  box-shadow: 
+    0 20px 45px rgba(94, 32, 42, 0.28),
+    0 0 0 1px rgba(174, 126, 50, 0.65),
+    inset 0 0 30px rgba(0, 0, 0, 0.85);
+  overflow: hidden;
 }
 .couple-image-frame::before {
   content: "";
   position: absolute;
-  inset: 0;
-  border: 1.5px solid rgba(174, 126, 50, 0.65);
+  inset: -3px;
+  border: 1.5px solid rgba(174, 126, 50, 0.75);
   border-radius: 50% 50% 44% 44%;
-  transform: scale(1.03);
   pointer-events: none;
 }
 .couple-image-frame::after {
   content: "";
   position: absolute;
-  inset: 8px;
-  border: 1px solid rgba(113, 29, 42, 0.2);
+  inset: 6px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
   border-radius: 48% 48% 42% 42%;
   pointer-events: none;
 }
 .image-glow {
   position: absolute;
-  inset: 6%;
+  inset: 4%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 209, 174, 0.55), transparent 70%);
-  filter: blur(18px);
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.25), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
 }
 
 /* Ornamental Viewport Border */
@@ -139,6 +153,10 @@
   }
   .border-corner {
     font-size: 16px;
+  }
+  .couple-image-frame {
+    width: min(84vw, 300px);
+    height: min(116vw, 410px);
   }
 }
 

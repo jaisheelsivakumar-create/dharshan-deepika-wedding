@@ -92,7 +92,7 @@ export default function BlessingsSection() {
   };
 
   return (
-    <section className="relative py-24 sm:py-32 px-6 sm:px-10 max-w-4xl mx-auto z-10" suppressHydrationWarning>
+    <section className="relative py-16 sm:py-24 md:py-28 px-5 sm:px-8 md:px-10 max-w-4xl mx-auto z-10 w-full" suppressHydrationWarning>
       {/* Floating Hearts Animation */}
       <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden" aria-hidden="true">
         <AnimatePresence>
@@ -113,62 +113,62 @@ export default function BlessingsSection() {
       </div>
 
       {/* Header */}
-      <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
-        <span className="text-[#a67831] text-3xl">❦</span>
-        <p className="text-[#95703e] font-heading text-xs tracking-[3px] uppercase mt-2 font-medium">
+      <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <span className="text-[#a67831] text-2xl sm:text-3xl">❦</span>
+        <p className="text-[#95703e] font-heading text-[11px] sm:text-xs tracking-[3px] uppercase mt-1.5 font-medium">
           Warmest Wishes
         </p>
-        <h2 className="text-3xl sm:text-5xl font-heading font-semibold text-[#6d1d29] tracking-tight mt-2 mb-3">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-semibold text-[#6d1d29] tracking-tight mt-1.5 mb-2.5">
           Shower Your Blessings
         </h2>
         <div className="text-[#a87935] text-xs">❖</div>
-        <p className="text-[#756055] text-sm sm:text-base font-serif italic max-w-lg mx-auto mt-3 leading-relaxed">
+        <p className="text-[#756055] text-xs sm:text-base font-serif italic max-w-lg mx-auto mt-2.5 px-3 leading-relaxed">
           Your warm blessings and cherished presence are the greatest gifts of love you bring into our lives.
         </p>
 
         {/* Big Heart Tap Button */}
-        <div className="mt-8 flex flex-col items-center justify-center">
+        <div className="mt-7 sm:mt-9 flex flex-col items-center justify-center">
           <button
             onClick={handleShowerBlessings}
-            className={`group relative flex items-center gap-3 px-8 py-3.5 rounded-full font-heading text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 shadow-md ${
+            className={`group relative flex items-center gap-2.5 sm:gap-3 px-7 sm:px-9 py-3 sm:py-3.5 rounded-full font-heading text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 shadow-md ${
               hasShowered
                 ? "bg-[#741e2b] text-[#fff8ee] border border-[#b1823c]"
                 : "glass-parchment-deep border border-[#b88c4a]/50 text-[#741e2b] hover:bg-white"
             }`}
           >
             <Heart
-              className={`w-5 h-5 transition-transform group-hover:scale-125 ${
+              className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-125 ${
                 hasShowered ? "fill-white text-white" : "fill-[#e78ba1] text-[#741e2b]"
               }`}
             />
             <span>{hasShowered ? "Blessings Showered!" : "Tap to Shower Blessings"}</span>
             <span
-              className="ml-2 px-2.5 py-0.5 rounded-full bg-black/10 text-xs font-mono text-[#741e2b]"
+              className="ml-1.5 sm:ml-2 px-2.5 py-0.5 rounded-full bg-black/10 text-xs font-mono text-[#741e2b]"
               suppressHydrationWarning
             >
               {blessingCount}
             </span>
           </button>
-          <span className="text-xs text-[#8c6753] mt-2 font-serif italic">
+          <span className="text-[11px] sm:text-xs text-[#8c6753] mt-2 font-serif italic">
             Tap multiple times to shower love
           </span>
         </div>
       </div>
 
       {/* Guest Wishes Card & Feed Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start">
         {/* Left: Message Form (5 cols) */}
         <div className="md:col-span-5 p-6 sm:p-7 rounded-2xl glass-parchment-deep border border-[#b88c4a]/40 shadow-xl">
-          <div className="flex items-center gap-2 mb-4 text-[#741e2b]">
+          <div className="flex items-center gap-2 mb-3.5 text-[#741e2b]">
             <MessageCircleHeart className="w-5 h-5 text-[#a87831]" />
-            <h3 className="text-lg font-heading font-semibold text-[#651c29]">
+            <h3 className="text-base sm:text-lg font-heading font-semibold text-[#651c29]">
               Leave a Warm Wish
             </h3>
           </div>
 
-          <form onSubmit={handleSendWish} className="space-y-4">
+          <form onSubmit={handleSendWish} className="space-y-3.5">
             <div>
-              <label className="block text-xs uppercase tracking-wider text-[#8c6753] font-heading mb-1.5">
+              <label className="block text-[11px] uppercase tracking-wider text-[#8c6753] font-heading mb-1">
                 Your Name / Family
               </label>
               <input
@@ -177,27 +177,27 @@ export default function BlessingsSection() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g., Uncle Suresh & Family"
-                className="w-full px-4 py-2.5 rounded-lg bg-white border border-[#b88c4a]/30 focus:border-[#741e2b] focus:outline-none text-sm text-[#651c29] placeholder-[#a0897b] font-serif"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#b88c4a]/30 focus:border-[#741e2b] focus:outline-none text-xs sm:text-sm text-[#651c29] placeholder-[#a0897b] font-serif"
               />
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider text-[#8c6753] font-heading mb-1.5">
+              <label className="block text-[11px] uppercase tracking-wider text-[#8c6753] font-heading mb-1">
                 Your Blessings &amp; Message
               </label>
               <textarea
                 required
-                rows={4}
+                rows={3}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Write your wishes for Dharshan & Deepika..."
-                className="w-full px-4 py-2.5 rounded-lg bg-white border border-[#b88c4a]/30 focus:border-[#741e2b] focus:outline-none text-sm text-[#651c29] placeholder-[#a0897b] font-serif resize-none"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#b88c4a]/30 focus:border-[#741e2b] focus:outline-none text-xs sm:text-sm text-[#651c29] placeholder-[#a0897b] font-serif resize-none"
               />
             </div>
 
             <button
               type="submit"
-              className="btn-royal-maroon w-full flex items-center justify-center gap-2 py-3 px-5 rounded-md text-xs uppercase tracking-wider font-heading"
+              className="btn-royal-maroon w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-md text-xs uppercase tracking-wider font-heading"
             >
               <Send className="w-3.5 h-3.5" />
               <span>Send Wedding Wish</span>
@@ -212,7 +212,7 @@ export default function BlessingsSection() {
         </div>
 
         {/* Right: Wishes Feed (7 cols) */}
-        <div className="md:col-span-7 space-y-4">
+        <div className="md:col-span-7 space-y-3.5">
           <div className="flex items-center justify-between px-1">
             <span className="text-xs uppercase tracking-widest text-[#a87831] font-heading font-semibold">
               Guest Blessings Wall
@@ -222,17 +222,17 @@ export default function BlessingsSection() {
             </span>
           </div>
 
-          <div className="space-y-3.5 max-h-[460px] overflow-y-auto pr-1">
+          <div className="space-y-3 max-h-[440px] overflow-y-auto pr-1">
             {blessings.map((b) => (
               <div
                 key={b.id}
-                className="p-5 rounded-xl glass-parchment border border-[#b88c4a]/30"
+                className="p-4 sm:p-5 rounded-xl glass-parchment border border-[#b88c4a]/30"
               >
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="text-sm font-heading font-semibold text-[#741e2b]">
+                <div className="flex items-center justify-between mb-1.5">
+                  <h4 className="text-xs sm:text-sm font-heading font-semibold text-[#741e2b]">
                     {b.name}
                   </h4>
-                  <span className="text-[11px] text-[#8c6753]">{b.time}</span>
+                  <span className="text-[10px] sm:text-[11px] text-[#8c6753]">{b.time}</span>
                 </div>
                 <p className="text-xs sm:text-sm text-[#71594d] font-serif italic leading-relaxed">
                   &ldquo;{b.message}&rdquo;

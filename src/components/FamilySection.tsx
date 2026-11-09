@@ -2,45 +2,29 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, HeartHandshake } from "lucide-react";
+import { HeartHandshake } from "lucide-react";
 import { weddingData } from "@/data/weddingData";
 
 export default function FamilySection() {
   return (
-    <section id="family-section" className="relative py-20 px-4 sm:px-6 max-w-5xl mx-auto z-10" suppressHydrationWarning>
-      {/* Header */}
+    <section
+      id="family-section"
+      className="relative py-20 px-4 sm:px-6 max-w-5xl mx-auto z-10"
+      suppressHydrationWarning
+    >
+      {/* Section Header */}
       <div className="text-center max-w-2xl mx-auto mb-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8 }}
-          className="flex items-center justify-center gap-2 text-amber-400 text-xs sm:text-sm uppercase tracking-[0.3em] mb-2 font-serif"
-        >
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>{weddingData.family.subheading}</span>
-          <Sparkles className="w-3.5 h-3.5" />
-        </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-3xl sm:text-5xl font-serif font-bold text-gold-gradient tracking-tight mb-4"
-        >
+        <span className="text-[#a67831] text-2xl">❦</span>
+        <p className="text-[#95703e] font-heading text-xs tracking-[3px] uppercase mt-1">
+          {weddingData.family.subheading}
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-heading font-semibold text-[#6d1d29] tracking-tight mt-2 mb-3">
           {weddingData.family.heading}
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-amber-100/70 text-sm sm:text-base font-serif italic max-w-lg mx-auto"
-        >
+        </h2>
+        <div className="text-[#a87935] text-xs">❖</div>
+        <p className="text-[#756055] text-sm sm:text-base font-serif italic max-w-lg mx-auto mt-3">
           {weddingData.family.traditionalNote}
-        </motion.p>
+        </p>
       </div>
 
       {/* Parents Cards Grid */}
@@ -51,23 +35,21 @@ export default function FamilySection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8 }}
-          className="p-8 rounded-3xl glass-luxury border border-amber-500/30 box-shadow-deep-3d relative overflow-hidden text-center"
+          className="p-8 rounded-2xl glass-parchment-deep border border-[#b88c4a]/40 shadow-xl text-center"
         >
-          <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 rounded-2xl glass-luxury border border-amber-400/40 flex items-center justify-center text-amber-300">
-              <HeartHandshake className="w-6 h-6" />
-            </div>
+          <div className="w-12 h-12 mx-auto mb-3 rounded-full border border-[#ae7e32]/40 bg-[#fff9ee] flex items-center justify-center text-[#741e2b]">
+            <HeartHandshake className="w-6 h-6" />
           </div>
-          <span className="text-xs uppercase tracking-widest text-amber-400 font-serif font-semibold">
+          <span className="text-xs uppercase tracking-widest text-[#a87831] font-heading font-semibold">
             {weddingData.family.groomParents.label}
           </span>
-          <h3 className="text-2xl font-serif font-bold text-neutral-100 mt-2 mb-1">
+          <h3 className="text-2xl font-heading font-semibold text-[#651c29] mt-2 mb-1">
             {weddingData.family.groomParents.mother} {"&"} {weddingData.family.groomParents.father}
           </h3>
-          <p className="text-xs sm:text-sm text-amber-200/70 font-serif italic mb-4">
+          <p className="text-xs sm:text-sm text-[#8c6753] font-serif italic mb-4">
             Parents of Groom Dharshan
           </p>
-          <p className="text-xs text-neutral-300/80 leading-relaxed font-sans border-t border-white/10 pt-4">
+          <p className="text-xs text-[#71594d] leading-relaxed border-t border-[#ae7e32]/20 pt-4">
             {weddingData.family.groomParents.description}
           </p>
         </motion.div>
@@ -78,23 +60,21 @@ export default function FamilySection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8, delay: 0.15 }}
-          className="p-8 rounded-3xl glass-luxury border border-amber-500/30 box-shadow-deep-3d relative overflow-hidden text-center"
+          className="p-8 rounded-2xl glass-parchment-deep border border-[#b88c4a]/40 shadow-xl text-center"
         >
-          <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 rounded-2xl glass-luxury border border-amber-400/40 flex items-center justify-center text-amber-300">
-              <HeartHandshake className="w-6 h-6" />
-            </div>
+          <div className="w-12 h-12 mx-auto mb-3 rounded-full border border-[#ae7e32]/40 bg-[#fff9ee] flex items-center justify-center text-[#741e2b]">
+            <HeartHandshake className="w-6 h-6" />
           </div>
-          <span className="text-xs uppercase tracking-widest text-amber-400 font-serif font-semibold">
+          <span className="text-xs uppercase tracking-widest text-[#a87831] font-heading font-semibold">
             {weddingData.family.brideParents.label}
           </span>
-          <h3 className="text-2xl font-serif font-bold text-neutral-100 mt-2 mb-1">
+          <h3 className="text-2xl font-heading font-semibold text-[#651c29] mt-2 mb-1">
             {weddingData.family.brideParents.mother} {"&"} {weddingData.family.brideParents.father}
           </h3>
-          <p className="text-xs sm:text-sm text-amber-200/70 font-serif italic mb-4">
+          <p className="text-xs sm:text-sm text-[#8c6753] font-serif italic mb-4">
             Parents of Bride Deepika
           </p>
-          <p className="text-xs text-neutral-300/80 leading-relaxed font-sans border-t border-white/10 pt-4">
+          <p className="text-xs text-[#71594d] leading-relaxed border-t border-[#ae7e32]/20 pt-4">
             {weddingData.family.brideParents.description}
           </p>
         </motion.div>

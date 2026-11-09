@@ -1,23 +1,21 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Music, Volume2, VolumeX, Sparkles } from "lucide-react";
 import { weddingData } from "@/data/weddingData";
 
-export default function MusicPlayer() {
+export interface MusicPlayerHandle {
+  playMusic: () => Promise<void>;
+  pauseMusic: () => void;
+  toggleMusic: () => Promise<void>;
+  isPlaying: boolean;
+}
+
+const MusicPlayer = forwardRef<MusicPlayerHandle>((props, ref) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const synthIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
-
-  // Auto-dismiss tooltip after 7 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowTooltip(false);
-    }, 7000);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Web Audio API ambient chime fallback
   const playGentleAmbientHarp = () => {
@@ -34,7 +32,7 @@ export default function MusicPlayer() {
         ctx.resume();
       }
 
-      // Pentatonic Indian classical wedding notes (Mohanam / Raga Bhupali: C, D, E, G, A, C)
+      // Traditional Indian auspicious notes (Mohanam / Bhupali raga)
       const freqs = [261.63, 293.66, 329.63, 392.0, 440.0, 523.25, 659.25];
 
       const playTone = () => {
@@ -43,12 +41,11 @@ export default function MusicPlayer() {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
 
-        // Warm sine / triangle acoustic harmonic tone
         osc.type = "sine";
         osc.frequency.setValueAtTime(note, ctx.currentTime);
 
         gain.gain.setValueAtTime(0.001, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.07, ctx.currentTime + 0.3);
+        gain.gain.exponentialRampToValueAtTime(0.06, ctx.currentTime + 0.3);
         gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 3.2);
 
         osc.connect(gain);
@@ -75,42 +72,42 @@ export default function MusicPlayer() {
     }
   };
 
-  const toggleMusic = async () => {
+  const playMusic = async () => {
     const audio = audioRef.current;
     if (!audio) return;
-
-    if (isPlaying) {
-      audio.pause();
-      stopGentleAmbientHarp();
-      setIsPlaying(false);
-    } else {
-      try {
-        await audio.play();
-        setIsPlaying(true);
-        setShowTooltip(false);
-      } catch {
-        // Fallback to Web Audio synthesis if network audio stream fails
-        playGentleAmbientHarp();
-        setIsPlaying(true);
-        setShowTooltip(false);
-      }
+    try {
+      await audio.play();
+      setIsPlaying(true);
+    } catch {
+      playGentleAmbientHarp();
+      setIsPlaying(true);
     }
   };
 
-  return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
-      {/* Tooltip notice */}
-      {showTooltip && (
-        <div
-          onClick={toggleMusic}
-          className="cursor-pointer hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full glass-luxury text-amber-200 text-xs border border-amber-400/30 shadow-lg animate-pulse"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span>Click to play wedding music</span>
-        </div>
-      )}
+  const pauseMusic = () => {
+    const audio = audioRef.current;
+    if (audio) audio.pause();
+    stopGentleAmbientHarp();
+    setIsPlaying(false);
+  };
 
-      {/* Hidden audio element */}
+  const toggleMusic = async () => {
+    if (isPlaying) {
+      pauseMusic();
+    } else {
+      await playMusic();
+    }
+  };
+
+  useImperativeHandle(ref, () => ({
+    playMusic,
+    pauseMusic,
+    toggleMusic,
+    isPlaying,
+  }));
+
+  return (
+    <>
       <audio
         ref={audioRef}
         src={weddingData.audio.src}
@@ -118,48 +115,36 @@ export default function MusicPlayer() {
         loop
         onEnded={() => setIsPlaying(false)}
         onError={() => {
-          // If the audio URL fails, synthesize
           if (isPlaying) playGentleAmbientHarp();
         }}
       />
 
-      {/* Floating Action Button */}
-      <button
-        onClick={toggleMusic}
-        aria-label={isPlaying ? "Mute music" : "Play music"}
-        className={`group relative flex items-center justify-center w-14 h-14 rounded-full transition-all duration-500 shadow-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 ${
-          isPlaying
-            ? "bg-gradient-to-tr from-amber-600 via-amber-500 to-yellow-300 text-neutral-950 scale-105 shadow-amber-500/40"
-            : "glass-luxury text-amber-300 hover:text-amber-100 hover:scale-105 border border-amber-500/40 hover:border-amber-400"
-        }`}
-      >
-        {/* Outer glowing pulsing ring when playing */}
-        {isPlaying && (
-          <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-amber-500 to-yellow-300 opacity-60 blur-sm animate-ping pointer-events-none" />
-        )}
-
-        {/* Rotating ring ornament */}
-        <span
-          className={`absolute inset-0 rounded-full border border-amber-300/40 ${
-            isPlaying ? "animate-spin" : ""
+      {/* Floating Music Button (Fixed Top-Right like Reference) */}
+      <div className="fixed top-5 right-5 sm:top-6 sm:right-6 z-[10002]">
+        <button
+          onClick={toggleMusic}
+          aria-label={isPlaying ? "Pause wedding music" : "Play wedding music"}
+          className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#ae7e32]/60 flex items-center justify-center cursor-pointer backdrop-blur-md transition-all duration-300 shadow-md ${
+            isPlaying
+              ? "bg-[#741e2b] text-[#ffd700] scale-105 shadow-[#5e202a]/30"
+              : "bg-[#fff9f0]/90 text-[#741d2b] hover:bg-[#fff9f0] hover:scale-105"
           }`}
-          style={{ animationDuration: "12s" }}
-        />
-
-        {/* Center icon / visualizer */}
-        <div className="relative flex items-center justify-center">
+          title={isPlaying ? "Pause music" : "Play music"}
+        >
           {isPlaying ? (
-            <div className="flex items-end gap-1 h-5">
-              <span className="w-1 bg-neutral-950 rounded-full animate-bounce [animation-delay:0ms] h-3.5" />
-              <span className="w-1 bg-neutral-950 rounded-full animate-bounce [animation-delay:150ms] h-5" />
-              <span className="w-1 bg-neutral-950 rounded-full animate-bounce [animation-delay:300ms] h-4" />
-              <span className="w-1 bg-neutral-950 rounded-full animate-bounce [animation-delay:450ms] h-2.5" />
+            <div className="flex items-end gap-0.5 h-4">
+              <span className="w-1 bg-[#ffd700] rounded-full animate-bounce [animation-delay:0ms] h-3" />
+              <span className="w-1 bg-[#ffd700] rounded-full animate-bounce [animation-delay:150ms] h-4" />
+              <span className="w-1 bg-[#ffd700] rounded-full animate-bounce [animation-delay:300ms] h-2.5" />
             </div>
           ) : (
-            <Music className="w-6 h-6 transition-transform group-hover:scale-110" />
+            <Music className="w-5 h-5" />
           )}
-        </div>
-      </button>
-    </div>
+        </button>
+      </div>
+    </>
   );
-}
+});
+
+MusicPlayer.displayName = "MusicPlayer";
+export default MusicPlayer;

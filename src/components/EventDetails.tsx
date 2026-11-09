@@ -9,10 +9,8 @@ import {
   MapPin,
   Sparkles,
   Flame,
-  Music,
   CheckCircle2,
   CalendarPlus,
-  Shirt,
   Sun,
 } from "lucide-react";
 import { weddingData, EventItem } from "@/data/weddingData";
@@ -23,13 +21,11 @@ export default function EventDetails() {
   const getIcon = (name: EventItem["iconName"]) => {
     switch (name) {
       case "Flame":
-        return <Flame className="w-6 h-6 text-amber-400" />;
+        return <Flame className="w-5 h-5 text-[#b0803c]" />;
       case "Sparkles":
-        return <Sparkles className="w-6 h-6 text-amber-400" />;
-      case "Music":
-        return <Music className="w-6 h-6 text-amber-400" />;
+        return <Sparkles className="w-5 h-5 text-[#b0803c]" />;
       default:
-        return <Sparkles className="w-6 h-6 text-amber-400" />;
+        return <Sparkles className="w-5 h-5 text-[#b0803c]" />;
     }
   };
 
@@ -51,51 +47,32 @@ export default function EventDetails() {
   };
 
   return (
-    <section id="events-section" className="relative py-24 px-4 sm:px-6 max-w-7xl mx-auto z-10" suppressHydrationWarning>
-      {/* Decorative backdrop glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-amber-600/10 rounded-full blur-[140px] pointer-events-none" />
-
-      {/* Header */}
-      <div className="text-center max-w-2xl mx-auto mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="flex items-center justify-center gap-2 text-amber-400 text-xs sm:text-sm uppercase tracking-[0.3em] mb-2 font-serif"
-        >
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>{weddingData.events.subheading}</span>
-          <Sparkles className="w-3.5 h-3.5" />
-        </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-3xl sm:text-5xl font-serif font-bold text-gold-gradient tracking-tight mb-4"
-        >
+    <section
+      id="events-section"
+      className="relative py-20 px-4 sm:px-6 max-w-5xl mx-auto z-10"
+      suppressHydrationWarning
+    >
+      {/* Section Header */}
+      <div className="text-center max-w-2xl mx-auto mb-14">
+        <span className="text-[#a67831] text-2xl">❦</span>
+        <p className="text-[#95703e] font-heading text-xs tracking-[3px] uppercase mt-1">
+          {weddingData.events.subheading}
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-heading font-semibold text-[#6d1d29] tracking-tight mt-2 mb-3">
           {weddingData.events.heading}
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-amber-100/70 text-sm sm:text-base font-serif italic max-w-lg mx-auto"
-        >
-          We cordially invite you to join us in every blessed ceremony and celebrate our divine union.
-        </motion.p>
+        </h2>
+        <div className="text-[#a87935] text-xs">❖</div>
+        <p className="text-[#756055] text-sm sm:text-base font-serif italic max-w-lg mx-auto mt-3">
+          We warmly invite you to join us in every blessed ceremony and celebrate our divine union.
+        </p>
       </div>
 
-      {/* 3D Tilt Event Cards Grid (2 cards centered) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      {/* 3D Tilt Event Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {weddingData.events.items.map((event, index) => (
           <motion.div
             key={event.id}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{
@@ -105,59 +82,55 @@ export default function EventDetails() {
             }}
             className="h-full"
           >
-            {/* 3D Parallax Tilt Wrapper */}
             <Tilt
               perspective={1200}
-              tiltMaxAngleX={12}
-              tiltMaxAngleY={12}
-              scale={1.03}
+              tiltMaxAngleX={10}
+              tiltMaxAngleY={10}
+              scale={1.02}
               transitionSpeed={1400}
               glareEnable={true}
-              glareMaxOpacity={0.22}
-              glareColor="#ffd700"
+              glareMaxOpacity={0.15}
+              glareColor="#ffffff"
               glarePosition="all"
-              glareBorderRadius="1.5rem"
+              glareBorderRadius="1.25rem"
               className="h-full"
             >
-              <div className="relative h-full flex flex-col justify-between rounded-3xl p-7 sm:p-9 glass-luxury border border-amber-500/30 box-shadow-deep-3d hover:border-amber-400 transition-colors duration-500 overflow-hidden">
-                {/* Background ambient corner ornament */}
-                <div className="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
-
+              <div className="relative h-full flex flex-col justify-between rounded-2xl p-6 sm:p-8 glass-parchment-deep border border-[#b88c4a]/40 shadow-xl hover:border-[#9f7236] transition-colors duration-300">
                 <div>
-                  {/* Top Bar: Badge and Icon */}
-                  <div className="flex items-center justify-between gap-3 mb-6">
-                    <span className="px-3.5 py-1 rounded-full text-[11px] uppercase tracking-wider font-semibold font-serif bg-gradient-to-r from-amber-500/20 to-amber-700/20 text-amber-300 border border-amber-400/40">
+                  {/* Top Bar with Badge & Icon */}
+                  <div className="flex items-center justify-between gap-3 mb-5">
+                    <span className="px-3 py-1 rounded-full text-[11px] uppercase tracking-wider font-semibold font-heading bg-[#741e2b]/10 text-[#741e2b] border border-[#741e2b]/25">
                       {event.badge}
                     </span>
-                    <div className="w-12 h-12 rounded-2xl glass-luxury border border-amber-400/30 flex items-center justify-center shadow-inner">
+                    <div className="w-10 h-10 rounded-full border border-[#ae7e32]/40 bg-[#fff9ee] flex items-center justify-center shadow-sm">
                       {getIcon(event.iconName)}
                     </div>
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-neutral-100 tracking-wide mb-1">
+                  <h3 className="text-2xl sm:text-3xl font-heading font-semibold text-[#721e2b] mb-1">
                     {event.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-amber-300/80 font-serif italic mb-6">
+                  <p className="text-xs sm:text-sm text-[#8c6753] font-serif italic mb-6">
                     {event.subtitle}
                   </p>
 
-                  {/* Details List */}
-                  <div className="space-y-4 mb-6 text-xs sm:text-sm text-neutral-300">
+                  {/* Date & Time details */}
+                  <div className="space-y-3.5 mb-6 text-xs sm:text-sm text-[#6a5347]">
                     <div className="flex items-start gap-3">
-                      <Calendar className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
-                      <span className="font-semibold text-neutral-100 text-sm sm:text-base">
+                      <Calendar className="w-4 h-4 text-[#a87831] mt-0.5 shrink-0" />
+                      <span className="font-semibold text-[#651c29] text-sm sm:text-base">
                         {event.date}
                       </span>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <Clock className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
+                      <Clock className="w-4 h-4 text-[#a87831] mt-0.5 shrink-0" />
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-medium text-neutral-200">{event.time}</span>
+                        <span className="font-medium text-[#651c29]">{event.time}</span>
                         {event.lagnam && (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs bg-amber-500/20 text-amber-300 border border-amber-400/40 font-serif">
-                            <Sun className="w-3 h-3 text-amber-300" />
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs bg-[#b88c4a]/15 text-[#701c2a] border border-[#b88c4a]/30 font-heading">
+                            <Sun className="w-3 h-3 text-[#b88c4a]" />
                             <span>Lagnam: {event.lagnam}</span>
                           </span>
                         )}
@@ -165,40 +138,31 @@ export default function EventDetails() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <MapPin className="w-4 h-4 text-rose-400 mt-0.5 shrink-0" />
+                      <MapPin className="w-4 h-4 text-[#8a3341] mt-0.5 shrink-0" />
                       <div>
-                        <p className="font-bold text-neutral-100 text-sm uppercase font-serif tracking-wide">
+                        <p className="font-bold text-[#651c29] text-sm uppercase tracking-wide">
                           {event.venue}
                         </p>
-                        <p className="text-xs text-neutral-300/80 mt-0.5 leading-relaxed">
+                        <p className="text-xs text-[#756055] mt-0.5 leading-relaxed">
                           {event.address}
                         </p>
                       </div>
                     </div>
-
-                    {event.dressCode && (
-                      <div className="flex items-center gap-3 pt-1">
-                        <Shirt className="w-4 h-4 text-amber-300 shrink-0" />
-                        <span className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-amber-200">
-                          {event.dressCode}
-                        </span>
-                      </div>
-                    )}
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-neutral-300/80 leading-relaxed font-sans border-t border-white/10 pt-4 mb-6">
+                  <p className="text-xs text-[#71594d] leading-relaxed border-t border-[#ae7e32]/20 pt-4 mb-6">
                     {event.description}
                   </p>
                 </div>
 
-                {/* Bottom Card Actions */}
+                {/* Bottom Actions */}
                 <div className="flex items-center gap-3 pt-2">
                   <a
                     href={createGoogleCalendarLink(event)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500/20 to-amber-600/30 hover:from-amber-500/40 hover:to-amber-600/50 border border-amber-400/30 text-amber-200 text-xs font-semibold tracking-wider transition-all duration-300"
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-md bg-[#741e2b] hover:bg-[#852232] text-[#fff8ee] text-xs font-heading font-medium tracking-wider transition-colors shadow-sm"
                   >
                     <CalendarPlus className="w-3.5 h-3.5" />
                     <span>Add to Calendar</span>
@@ -206,16 +170,16 @@ export default function EventDetails() {
 
                   <button
                     onClick={() => handleCopyVenue(event.id, `${event.venue}, ${event.address}`)}
-                    className="py-2.5 px-3 rounded-xl glass-luxury border border-white/10 hover:border-amber-400/40 text-neutral-300 hover:text-amber-200 text-xs font-medium transition-all duration-300"
+                    className="py-2.5 px-3.5 rounded-md border border-[#ae7e32]/40 bg-[#fff9ee] hover:bg-white text-[#701e2a] text-xs font-medium transition-colors"
                     title="Copy venue address"
                   >
                     {copiedId === event.id ? (
-                      <span className="flex items-center gap-1 text-emerald-400">
+                      <span className="flex items-center gap-1 text-emerald-700">
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>Copied</span>
                       </span>
                     ) : (
-                      <span>Copy Address</span>
+                      <span>Copy Venue</span>
                     )}
                   </button>
                 </div>

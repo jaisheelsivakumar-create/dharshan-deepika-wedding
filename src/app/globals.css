@@ -2,22 +2,29 @@
 
 @layer base {
   :root {
-    --font-serif-display: "Cinzel", "Playfair Display", "Didot", "Bodoni MT", Georgia, serif;
-    --font-serif-body: "Cormorant Garamond", "EB Garamond", Garamond, Georgia, serif;
-    --font-script: "Great Vibes", "Alex Brush", "Brush Script MT", cursive;
-    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-script: "Great Vibes", cursive, sans-serif;
+    --font-serif-display: "Playfair Display", Georgia, serif;
+    --font-serif-body: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    --color-bg-ivory: #f8eee5;
+    --color-maroon-deep: #651c29;
+    --color-gold-antique: #ae7e32;
   }
 
   body {
-    background-color: #0c090e;
-    color: #f7ede2;
-    font-family: var(--font-sans);
+    background-color: #f8eee5;
+    color: #651c29;
+    font-family: var(--font-serif-body);
+    font-weight: 500;
+    letter-spacing: 0.01em;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
 
   h1, h2, h3, .font-heading {
     font-family: var(--font-serif-display);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
   }
 
   .font-serif {
@@ -29,146 +36,171 @@
   }
 }
 
-/* 3D Gold Text Gradient and Depth Effects */
-.text-gold-gradient {
-  background: linear-gradient(135deg, #f7dfa5 0%, #d4af37 35%, #ffd700 50%, #aa771c 75%, #f3e5ab 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gold-light {
-  background: linear-gradient(135deg, #fff2cc 0%, #e8c872 50%, #c99839 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-rose-gradient {
-  background: linear-gradient(135deg, #ffe5ec 0%, #f7cad0 40%, #d87093 75%, #ffb6c1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* 3D Layered Shadows */
-.text-shadow-3d {
-  text-shadow: 
-    0 1px 0 #8b6826,
-    0 2px 0 #73531b,
-    0 3px 0 #573e13,
-    0 4px 6px rgba(0, 0, 0, 0.7),
-    0 8px 20px rgba(212, 175, 55, 0.25);
-}
-
-.text-shadow-romantic {
-  text-shadow: 
-    0 2px 4px rgba(0,0,0,0.6),
-    0 8px 24px rgba(212, 175, 55, 0.35);
-}
-
-.box-shadow-gold-glow {
-  box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.25), 0 0 20px 2px rgba(212, 175, 55, 0.1);
-}
-
-.box-shadow-deep-3d {
+/* Royal Parchment Glass Card */
+.glass-parchment {
+  background: rgba(255, 250, 239, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(174, 126, 50, 0.35);
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.7),
-    0 1px 0 1px rgba(255, 215, 0, 0.15) inset,
-    0 -1px 0 1px rgba(0, 0, 0, 0.4) inset;
+    0 10px 30px rgba(94, 32, 42, 0.07),
+    0 1px 3px rgba(174, 126, 50, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
-/* Glassmorphism Luxury Card */
-.glass-luxury {
-  background: linear-gradient(145deg, rgba(28, 20, 32, 0.75) 0%, rgba(18, 13, 22, 0.85) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.glass-luxury-subtle {
-  background: linear-gradient(145deg, rgba(30, 22, 35, 0.5) 0%, rgba(15, 10, 18, 0.6) 100%);
+.glass-parchment-deep {
+  background: rgba(255, 250, 239, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(174, 126, 50, 0.45);
+  box-shadow: 
+    0 20px 45px rgba(94, 32, 42, 0.12),
+    0 4px 12px rgba(174, 126, 50, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
-/* Subtle Animated Shimmer for borders */
-@keyframes border-shimmer {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* Deep Maroon Button with Gold Shimmer */
+.btn-royal-maroon {
+  background: linear-gradient(135deg, #741e2b 0%, #5d1722 100%);
+  color: #fff8ee;
+  border: 1px solid #b1823c;
+  box-shadow: 0 9px 24px rgba(94, 32, 42, 0.28);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-royal-maroon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(94, 32, 42, 0.4);
+  background: linear-gradient(135deg, #852232 0%, #681a26 100%);
 }
 
-.shimmer-border {
+/* Sacred Arched Frame for Couple Portrait */
+.couple-image-frame {
   position: relative;
+  width: min(86vw, 360px);
+  height: min(112vw, 470px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.shimmer-border::before {
+.couple-image-frame::before {
   content: "";
   position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(60deg, rgba(212, 175, 55, 0.1), rgba(255, 223, 128, 0.6), rgba(212, 175, 55, 0.1));
-  background-size: 200% 200%;
-  animation: border-shimmer 6s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  inset: 0;
+  border: 1.5px solid rgba(174, 126, 50, 0.65);
+  border-radius: 50% 50% 44% 44%;
+  transform: scale(1.03);
   pointer-events: none;
+}
+.couple-image-frame::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(113, 29, 42, 0.2);
+  border-radius: 48% 48% 42% 42%;
+  pointer-events: none;
+}
+.image-glow {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 209, 174, 0.55), transparent 70%);
+  filter: blur(18px);
+}
+
+/* Ornamental Viewport Border */
+.ornamental-border {
+  position: fixed;
+  z-index: 90;
+  inset: 10px;
+  border: 1px solid rgba(159, 118, 55, 0.55);
+  pointer-events: none;
+}
+.ornamental-border::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(113, 29, 42, 0.16);
+}
+.border-corner {
+  position: absolute;
+  color: rgba(155, 108, 42, 0.85);
+  font-size: 22px;
+  line-height: 1;
+}
+.top-left { top: 6px; left: 6px; transform: rotate(-45deg); }
+.top-right { top: 6px; right: 6px; transform: rotate(45deg); }
+.bottom-left { bottom: 6px; left: 6px; transform: rotate(-135deg); }
+.bottom-right { bottom: 6px; right: 6px; transform: rotate(135deg); }
+
+@media (max-width: 600px) {
+  .ornamental-border {
+    inset: 6px;
+  }
+  .border-corner {
+    font-size: 16px;
+  }
 }
 
 /* Falling Flowers Keyframes */
-@keyframes fallDown {
+@keyframes fallingPetal {
   0% {
-    transform: translateY(-80px) translateX(0) rotate(0deg) rotateY(0deg) scale(0.8);
+    transform: translateY(-40px) translateX(0) rotate(0deg);
     opacity: 0;
   }
-  10% {
+  12% {
     opacity: 0.85;
   }
-  90% {
-    opacity: 0.75;
+  40% {
+    transform: translateY(35vh) translateX(35px) rotate(120deg);
+  }
+  70% {
+    transform: translateY(70vh) translateX(-30px) rotate(240deg);
   }
   100% {
-    transform: translateY(105vh) translateX(var(--drift-x, 80px)) rotate(var(--rot-z, 360deg)) rotateY(var(--rot-y, 360deg)) scale(1.1);
+    transform: translateY(112vh) translateX(25px) rotate(360deg);
     opacity: 0;
   }
 }
 
-@keyframes swayFlutter {
-  0%, 100% {
-    transform: rotate(-10deg) skewX(-4deg);
-  }
-  50% {
-    transform: rotate(14deg) skewX(6deg);
-  }
+.petal {
+  position: absolute;
+  top: -30px;
+  color: rgba(220, 115, 140, 0.65);
+  font-size: 18px;
+  filter: drop-shadow(0 2px 4px rgba(140, 70, 85, 0.15));
+  animation: fallingPetal linear infinite;
+  pointer-events: none;
+  will-change: transform, opacity;
 }
 
-.animate-petal {
-  animation-name: fallDown;
-  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  animation-iteration-count: infinite;
-}
-
-.petal-flutter {
-  animation: swayFlutter 4s ease-in-out infinite alternate;
+/* Interactive Cursor Sparkle */
+.sparkle-pointer-dot {
+  position: fixed;
+  z-index: 10001;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 210, 120, 0.95);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s linear;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #0c090e;
+  background: #f8eee5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #39283f;
+  background: #bfa386;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #63446d;
+  background: #9b724b;
 }

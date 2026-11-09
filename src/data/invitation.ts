@@ -188,7 +188,7 @@ export const invitationData: InvitationData = {
     qrCodeImage: "/images/google-maps-qr-code.svg",
     poojaElementsImage: "/images/pooja-elements.png",
     traditionalCardBg: "/images/traditional-card-bg.jpg",
-    audioSrc: "https://actions.google.com/sounds/v1/ambiences/outdoor_ambience_quiet.ogg",
+    audioSrc: "/music/wedding-song.mp3",
   },
   footer: {
     message: "Thank you for being an indispensable part of our lives and blessing our union.",

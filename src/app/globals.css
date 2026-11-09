@@ -1,169 +1,231 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-script: var(--font-script), "Great Vibes", cursive;
+  --font-heading: var(--font-heading), "Playfair Display", Georgia, serif;
+  --font-body: var(--font-body), "Lora", Georgia, serif;
+  --font-telugu: var(--font-telugu), "Noto Serif Telugu", "Noto Sans Telugu", serif;
+
+  --color-maroon: #6B1A1F;
+  --color-maroon-dark: #4F1115;
+  --color-gold: #B8892E;
+  --color-gold-light: #DFBC6E;
+  --color-cream: #FDF8EE;
+}
+
 @layer base {
-  :root {
-    --font-script: "Great Vibes", cursive, sans-serif;
-    --font-serif: "Playfair Display", Georgia, serif;
-    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-    --color-bg-cream: #fdfbf7;
-    --color-maroon-primary: #6b1e23;
-    --color-maroon-dark: #521418;
-    --color-gold-accent: #c59b4e;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-  }
-
+  html,
   body {
-    background-color: #fdfbf7;
-    color: #6b1e23;
-    font-family: var(--font-serif);
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
+    max-width: 100%;
+    overflow-x: clip;
+    background-color: #FDF8EE;
+    color: #6B1A1F;
+    font-family: var(--font-body), Georgia, serif;
+    -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
   }
+}
 
-  h1, h2, h3, .font-heading {
-    font-family: var(--font-serif);
-    letter-spacing: 0.02em;
+/* Fluid Typography Scale */
+.text-fluid-names {
+  font-size: clamp(2.15rem, 6.8vw, 4.35rem);
+  line-height: 1.06;
+}
+
+.text-fluid-script-lg {
+  font-size: clamp(2.05rem, 5.2vw, 3.65rem);
+  line-height: 1.15;
+}
+
+.text-fluid-script-md {
+  font-size: clamp(1.75rem, 4.4vw, 2.95rem);
+  line-height: 1.18;
+}
+
+.text-fluid-h2 {
+  font-size: clamp(1.5rem, 4vw, 2.65rem);
+  line-height: 1.18;
+}
+
+.text-fluid-h3 {
+  font-size: clamp(1.15rem, 2.7vw, 1.7rem);
+  line-height: 1.25;
+}
+
+.text-fluid-lead {
+  font-size: clamp(0.82rem, 1.8vw, 1rem);
+  line-height: 1.65;
+}
+
+.text-fluid-body {
+  font-size: clamp(0.88rem, 1.85vw, 1.06rem);
+  line-height: 1.72;
+}
+
+.text-fluid-meta {
+  font-size: clamp(0.74rem, 1.45vw, 0.9rem);
+  line-height: 1.6;
+}
+
+.text-fluid-eyebrow {
+  font-size: clamp(0.64rem, 1.2vw, 0.76rem);
+  letter-spacing: clamp(0.14em, 0.42vw, 0.28em);
+  line-height: 1.5;
+}
+
+.text-fluid-countdown {
+  font-size: clamp(1.2rem, 3.2vw, 1.875rem);
+  line-height: 1.1;
+}
+
+.text-fluid-shloka-lead {
+  font-size: clamp(0.92rem, 2.1vw, 1.14rem);
+  line-height: 1.8;
+}
+
+.text-fluid-shloka {
+  font-size: clamp(0.82rem, 1.9vw, 1.02rem);
+  line-height: 1.85;
+}
+
+/* Warm Cream Parchment Card Surfaces (GPU-friendly, zero backdrop-blur thrashing) */
+.parchment-card {
+  background: linear-gradient(
+    180deg,
+    rgba(253, 249, 240, 0.94) 0%,
+    rgba(249, 240, 222, 0.91) 100%
+  );
+  border: 1px solid rgba(184, 137, 46, 0.5);
+  box-shadow:
+    0 12px 32px rgba(107, 26, 31, 0.08),
+    0 3px 10px rgba(184, 137, 46, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+}
+
+.parchment-card-hero {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(253, 250, 243, 0.96) 0%,
+    rgba(249, 241, 224, 0.92) 100%
+  );
+  border: 1.5px solid rgba(184, 137, 46, 0.65);
+  box-shadow:
+    0 18px 46px rgba(107, 26, 31, 0.11),
+    0 4px 16px rgba(184, 137, 46, 0.16),
+    inset 0 0 0 2px rgba(255, 252, 246, 0.78);
+}
+
+/* Swinging Top Corner Garlands / Bells */
+@keyframes gentleBellSwingLeft {
+  0%,
+  100% {
+    transform: rotate(-1.6deg);
   }
-
-  .font-serif {
-    font-family: var(--font-serif);
-  }
-
-  .font-script {
-    font-family: var(--font-script);
+  50% {
+    transform: rotate(1.8deg);
   }
 }
 
-/* Cream Parchment Luxury Card */
-.glass-parchment {
-  background: rgba(255, 252, 246, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(107, 30, 35, 0.18);
-  box-shadow: 
-    0 12px 32px rgba(107, 30, 35, 0.06),
-    0 2px 6px rgba(197, 155, 78, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-}
-
-.glass-parchment-deep {
-  background: rgba(255, 252, 246, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(107, 30, 35, 0.28);
-  box-shadow: 
-    0 18px 42px rgba(107, 30, 35, 0.09),
-    0 4px 12px rgba(197, 155, 78, 0.12),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.8);
-}
-
-/* Deep Maroon Button with Gold Glow */
-.btn-royal-maroon {
-  background: linear-gradient(135deg, #6b1e23 0%, #521418 100%);
-  color: #ffffff;
-  border: 1px solid #c59b4e;
-  box-shadow: 0 8px 22px rgba(107, 30, 35, 0.25);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.btn-royal-maroon:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(107, 30, 35, 0.38);
-  background: linear-gradient(135deg, #7c242a 0%, #5d171c 100%);
-}
-
-/* Sacred Arched Frame for Couple Portrait */
-.couple-image-frame {
-  position: relative;
-  width: min(84vw, 340px);
-  height: min(116vw, 470px);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(ellipse at center, #260e12 0%, #130608 65%, #080304 100%);
-  border-radius: 50% 50% 44% 44%;
-  box-shadow: 
-    0 22px 48px rgba(107, 30, 35, 0.28),
-    0 0 0 1px rgba(197, 155, 78, 0.65),
-    inset 0 0 35px rgba(0, 0, 0, 0.85);
-  overflow: hidden;
-}
-.couple-image-frame::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border: 1.5px solid rgba(197, 155, 78, 0.75);
-  border-radius: 50% 50% 44% 44%;
-  pointer-events: none;
-}
-.couple-image-frame::after {
-  content: "";
-  position: absolute;
-  inset: 6px;
-  border: 1px solid rgba(255, 215, 0, 0.28);
-  border-radius: 48% 48% 42% 42%;
-  pointer-events: none;
-}
-
-@media (max-width: 600px) {
-  .couple-image-frame {
-    width: min(84vw, 290px);
-    height: min(116vw, 400px);
+@keyframes gentleBellSwingRight {
+  0%,
+  100% {
+    transform: rotate(1.6deg);
+  }
+  50% {
+    transform: rotate(-1.8deg);
   }
 }
 
-/* Falling Flowers Keyframes */
-@keyframes fallingPetal {
-  0% {
-    transform: translateY(-40px) translateX(0) rotate(0deg);
-    opacity: 0;
+.garland-swing-left {
+  transform-origin: top left;
+  animation: gentleBellSwingLeft 6.5s ease-in-out infinite;
+}
+
+.garland-swing-right {
+  transform-origin: top right;
+  animation: gentleBellSwingRight 6.8s ease-in-out infinite;
+}
+
+/* Lamp Flame Glow Flicker */
+@keyframes flameFlicker {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1) translateY(0px);
+    opacity: 0.78;
   }
-  15% {
-    opacity: 0.8;
+  25% {
+    transform: translate(-50%, -50%) scale(1.12, 1.18) translateY(-1px);
+    opacity: 0.95;
   }
-  45% {
-    transform: translateY(35vh) translateX(30px) rotate(110deg);
+  50% {
+    transform: translate(-50%, -50%) scale(0.94, 1.02) translateY(0.5px);
+    opacity: 0.7;
   }
   75% {
-    transform: translateY(70vh) translateX(-25px) rotate(220deg);
-  }
-  100% {
-    transform: translateY(112vh) translateX(20px) rotate(360deg);
-    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.08, 1.14) translateY(-0.5px);
+    opacity: 0.9;
   }
 }
 
-.petal {
-  position: absolute;
-  top: -30px;
-  color: rgba(244, 143, 177, 0.55);
-  font-size: 18px;
-  filter: drop-shadow(0 2px 4px rgba(107, 30, 35, 0.12));
-  animation: fallingPetal linear infinite;
-  pointer-events: none;
+.lamp-flame-glow {
+  animation: flameFlicker 1.8s ease-in-out infinite;
   will-change: transform, opacity;
 }
 
-/* Custom scrollbar */
+/* Splash Envelope Animations (CSS-driven so splash renders with zero Framer Motion overhead) */
+@keyframes sealPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.splash-seal-idle {
+  animation: sealPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes toastEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.toast-enter {
+  animation: toastEnter 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .garland-swing-left,
+  .garland-swing-right,
+  .lamp-flame-glow,
+  .splash-seal-idle,
+  .toast-enter {
+    animation: none !important;
+  }
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #fdfbf7;
+  background: #fdf8ee;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #d8c3b0;
-  border-radius: 4px;
+  background: rgba(184, 137, 46, 0.55);
+  border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #6b1e23;
+  background: #6B1A1F;
 }

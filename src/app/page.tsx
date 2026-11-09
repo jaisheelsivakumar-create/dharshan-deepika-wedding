@@ -1,53 +1,88 @@
 "use client";
 
-import React, { useRef } from "react";
-import ViewportDecorations from "@/components/ViewportDecorations";
-import MusicPlayer, { MusicPlayerHandle } from "@/components/MusicPlayer";
-import HeroSection from "@/components/HeroSection";
-import WelcomeStorySection from "@/components/WelcomeStorySection";
-import EventDetails from "@/components/EventDetails";
-import LocationSection from "@/components/LocationSection";
-import BlessingsSection from "@/components/BlessingsSection";
-import FooterSection from "@/components/FooterSection";
+import React, { useRef, useState } from "react";
+import dynamic from "next/dynamic";
+import BackgroundLayer from "@/components/layers/BackgroundLayer";
+import MusicPlayer, { MusicPlayerHandle } from "@/components/ui/MusicPlayer";
+import Toast from "@/components/ui/Toast";
+import SplashEnvelope from "@/components/sections/SplashEnvelope";
+import { invitationData } from "@/data/invitation";
+import type { WeddingSectionId } from "@/lib/particleBus";
+
+const InvitationContent = dynamic(
+  () => import("@/components/sections/InvitationContent"),
+  { ssr: false }
+);
+
+let prefetched = false;
+function prefetchInvitationModules() {
+  if (prefetched) return;
+  prefetched = true;
+  void import("@/components/sections/InvitationContent");
+}
 
 export default function Home() {
   const musicPlayerRef = useRef<MusicPlayerHandle | null>(null);
+  const [showSplash, setShowSplash] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
+  const [activeSection, setActiveSection] = useState<WeddingSectionId>("splash");
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleViewDetails = () => {
-    // Start music on user engagement if not already playing
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => setToastMessage(null), 2800);
+  };
+
+  const handleStartEnvelopeOpen = () => {
+    prefetchInvitationModules();
+    setIsOpened(true);
+    setActiveSection("hero");
     if (musicPlayerRef.current) {
-      musicPlayerRef.current.playMusic();
+      void musicPlayerRef.current.startAfterEnvelope();
     }
   };
 
+  const handleFinishEnvelopeOpen = () => {
+    setShowSplash(false);
+  };
+
   return (
-    <main className="relative min-h-screen bg-[#fdfbf7] text-[#6b1e23] selection:bg-[#6b1e23]/15 selection:text-[#6b1e23] overflow-x-hidden">
-      {/* 1. Global Falling Flowers Animation (Fixed z-index -1) */}
-      <ViewportDecorations />
+    <div className="relative min-h-[100dvh] w-full text-[#6B1A1F]">
+      {/* Layers 1 & 2: Fixed Background Paper, Swinging Garlands/Bells (md+) & Soft Vignette */}
+      <BackgroundLayer isOpened={isOpened} />
 
-      {/* 2. Floating Circular Music Player at Bottom-Right */}
+      {/* Accessible main & h1 landmark before InvitationContent mounts on open */}
+      {!isOpened && (
+        <main className="sr-only">
+          <h1>
+            {invitationData.couple.groom.name} &amp; {invitationData.couple.bride.name}{" "}
+            Wedding Invitation
+          </h1>
+        </main>
+      )}
+
+      {/* Layers 3-6: Deferred Invitation Content, 3D Particles, & Foreground Lamps (mounted cleanly on open) */}
+      {isOpened && (
+        <InvitationContent
+          activeSection={activeSection}
+          isOpened={isOpened}
+          onShowToast={showToast}
+          onActiveSectionChange={setActiveSection}
+        />
+      )}
+
+      {/* Layer 7: Floating UI Controls (Music Button, Toast, Splash Envelope) */}
       <MusicPlayer ref={musicPlayerRef} />
+      <Toast message={toastMessage} />
 
-      {/* 3. Main Content Flow */}
-      <div className="relative z-10 flex flex-col">
-        {/* Hero Section: Exact text, Invocations, Script Names, 3D Depth, CTA & Scroll to Explore */}
-        <HeroSection onViewDetails={handleViewDetails} />
-
-        {/* Welcome / Story Section: "We Are Getting Married", Couple Photo with Parallax, Countdown */}
-        <WelcomeStorySection />
-
-        {/* Event Details Section: 2 Event Cards in 3D Tilt, Parents' Details */}
-        <EventDetails />
-
-        {/* Location & Navigation Section: Map Iframe, QR Code, Direct Button */}
-        <LocationSection />
-
-        {/* Guest Blessings & Wishes Wall */}
-        <BlessingsSection />
-
-        {/* Final Auspicious Blessings & Footer */}
-        <FooterSection />
-      </div>
-    </main>
+      <SplashEnvelope
+        isVisible={showSplash}
+        onPrefetch={prefetchInvitationModules}
+        onStartOpen={handleStartEnvelopeOpen}
+        onFinishOpen={handleFinishEnvelopeOpen}
+      />
+    </div>
   );
 }

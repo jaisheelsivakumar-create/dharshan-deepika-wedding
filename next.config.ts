@@ -2,7 +2,22 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
+  },
+  ...(process.platform === "win32" && !process.env.VERCEL
+    ? {
+        experimental: {
+          turbopackPluginRuntimeStrategy: "forceWorkerThreads" as const,
+        },
+      }
+    : {}),
+  turbopack: {
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
+      },
+    },
   },
 };
 

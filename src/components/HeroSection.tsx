@@ -16,6 +16,7 @@ export default function HeroSection() {
   const overlayOpacity = useTransform(scrollY, [0, 400], [0.65, 0.85]);
 
   // Countdown timer state
+  const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -24,6 +25,7 @@ export default function HeroSection() {
   });
 
   useEffect(() => {
+    setMounted(true);
     const targetDate = new Date(weddingData.couple.weddingDateISO).getTime();
 
     const updateCountdown = () => {
@@ -61,7 +63,7 @@ export default function HeroSection() {
         className="absolute inset-0 -top-12 -bottom-12 w-full h-[120%] pointer-events-none z-0"
       >
         <div
-          className="w-full h-full bg-cover bg-center bg-no-repeat filter brightness-[0.7] contrast-[1.1] transform scale-105"
+          className="w-full h-full bg-cover bg-[center_25%] md:bg-[center_20%] bg-no-repeat filter brightness-[0.72] contrast-[1.08] transform scale-105"
           style={{
             backgroundImage: `url('${weddingData.hero.backgroundImage}')`,
           }}
@@ -120,7 +122,7 @@ export default function HeroSection() {
             <span className="w-12 sm:w-24 h-[1px] bg-gradient-to-r from-transparent to-amber-400" />
             <div className="mx-4 flex items-center gap-2">
               <span className="text-2xl sm:text-4xl text-amber-300 font-script italic text-shadow-romantic">
-                &amp;
+                {"&"}
               </span>
             </div>
             <span className="w-12 sm:w-24 h-[1px] bg-gradient-to-l from-transparent to-amber-400" />
@@ -174,9 +176,13 @@ export default function HeroSection() {
             <div
               key={idx}
               className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-2xl glass-luxury border border-amber-500/20 shadow-xl"
+              suppressHydrationWarning
             >
-              <span className="text-xl sm:text-3xl font-heading font-bold text-gold-light">
-                {String(item.val).padStart(2, "0")}
+              <span
+                className="text-xl sm:text-3xl font-heading font-bold text-gold-light"
+                suppressHydrationWarning
+              >
+                {mounted ? String(item.val).padStart(2, "0") : "--"}
               </span>
               <span className="text-[10px] sm:text-xs uppercase tracking-wider text-amber-200/60 font-sans mt-0.5">
                 {item.label}

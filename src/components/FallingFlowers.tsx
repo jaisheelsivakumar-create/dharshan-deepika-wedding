@@ -41,6 +41,7 @@ export default function FallingFlowers() {
       aria-hidden="true"
       className="fixed inset-0 pointer-events-none overflow-hidden z-0"
       style={{ zIndex: 0 }}
+      suppressHydrationWarning
     >
       {petals.map((petal) => {
         // SVG paths for varied floral petals

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Heart, ArrowUp, Sparkles } from "lucide-react";
+import { Heart, ArrowUp } from "lucide-react";
 import { weddingData } from "@/data/weddingData";
 
 export default function FooterSection() {
@@ -10,11 +10,17 @@ export default function FooterSection() {
   };
 
   return (
-    <footer className="relative border-t border-amber-500/20 py-16 px-4 sm:px-6 bg-[#0a070c] z-10 text-center">
+    <footer
+      className="relative border-t border-amber-500/20 py-16 px-4 sm:px-6 bg-[#0a070c] z-10 text-center"
+      suppressHydrationWarning
+    >
       <div className="max-w-4xl mx-auto flex flex-col items-center">
         {/* Monogram Seal */}
         <div className="relative mb-6">
-          <div className="w-16 h-16 rounded-full glass-luxury border-2 border-amber-400/40 flex items-center justify-center text-amber-200 text-xl font-serif font-bold shadow-2xl">
+          <div
+            className="w-16 h-16 rounded-full glass-luxury border-2 border-amber-400/40 flex items-center justify-center text-amber-200 text-xl font-serif font-bold shadow-2xl"
+            suppressHydrationWarning
+          >
             {weddingData.couple.monogram}
           </div>
           <div className="absolute -inset-1 rounded-full border border-amber-400/20 pointer-events-none" />
@@ -22,7 +28,7 @@ export default function FooterSection() {
 
         {/* Names */}
         <h3 className="text-2xl sm:text-3xl font-serif font-bold text-gold-gradient tracking-wide mb-2">
-          {weddingData.couple.groom.firstName} &amp; {weddingData.couple.bride.firstName}
+          {weddingData.couple.groom.firstName} {"&"} {weddingData.couple.bride.firstName}
         </h3>
 
         {/* Date and Hashtag */}
@@ -49,7 +55,7 @@ export default function FooterSection() {
         <div className="mt-12 text-[11px] text-neutral-500 flex items-center justify-center gap-1 font-sans">
           <span>Crafted with</span>
           <Heart className="w-3 h-3 text-rose-500 fill-rose-500 inline" />
-          <span>for Dharashan &amp; Priyadharshini</span>
+          <span>for Dharashan {"&"} Priyadharshini</span>
         </div>
       </div>
     </footer>

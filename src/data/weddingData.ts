@@ -115,8 +115,7 @@ export const weddingData: WeddingData = {
   hero: {
     welcomeText: "We Invite You To Celebrate The Wedding Of",
     locationBrief: "Chennai, Tamil Nadu • India",
-    backgroundImage:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80",
+    backgroundImage: "/images/couple.jpg",
   },
   story: {
     heading: "Our Journey of Love",
@@ -126,11 +125,11 @@ export const weddingData: WeddingData = {
     photos: [
       {
         id: "p1",
-        title: "The First Glimpse",
-        subtitle: "Where it all began",
-        src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80",
+        title: "Dharashan & Priyadharshini",
+        subtitle: "The Sacred Vows",
+        src: "/images/couple.jpg",
         aspect: "portrait",
-        caption: "A spark that grew into a lifetime promise.",
+        caption: "Bound by sacred tradition, love, and eternal companionship.",
       },
       {
         id: "p2",
@@ -216,9 +215,7 @@ export const weddingData: WeddingData = {
     mapEmbedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7511677322964!2d80.2452288!3d12.9237248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525cf26d408543%3A0xc3191be08cb1745e!2sEast%20Coast%20Rd%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
     googleMapsUrl: "https://maps.google.com/?q=The+Royal+Heritage+Palace+ECR+Chennai",
-    // High-resolution clean QR code placeholder pointing to Google Maps
-    qrCodeUrl:
-      "https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=https%3A%2F%2Fmaps.google.com%2F%3Fq%3DThe%2BRoyal%2BHeritage%2BPalace%2BECR%2BChennai&color=d4af37&bgcolor=140e18&margin=10",
+    qrCodeUrl: "/images/qr-code.png",
     phoneContact: "+91 98765 43210 / +91 91234 56789",
     contactName: "Wedding Hospitality Desk",
   },

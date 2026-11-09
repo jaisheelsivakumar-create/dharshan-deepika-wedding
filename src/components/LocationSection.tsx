@@ -177,7 +177,7 @@ export default function LocationSection() {
                 <img
                   src={weddingData.location.qrCodeUrl}
                   alt="Location QR Code for Google Maps"
-                  className="w-44 h-44 sm:w-52 sm:h-52 rounded-xl object-contain bg-[#140e18]"
+                  className="w-44 h-44 sm:w-52 sm:h-52 rounded-xl object-contain bg-white p-2 shadow-inner"
                   loading="lazy"
                 />
               </div>

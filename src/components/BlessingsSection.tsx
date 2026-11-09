@@ -156,7 +156,10 @@ export default function BlessingsSection() {
             <span>
               {hasShowered ? "Blessings Showered!" : "Tap to Shower Blessings"}
             </span>
-            <span className="ml-2 px-2.5 py-0.5 rounded-full bg-black/40 text-xs font-mono text-amber-300">
+            <span
+              className="ml-2 px-2.5 py-0.5 rounded-full bg-black/40 text-xs font-mono text-amber-300"
+              suppressHydrationWarning
+            >
               {blessingCount}
             </span>
           </motion.button>

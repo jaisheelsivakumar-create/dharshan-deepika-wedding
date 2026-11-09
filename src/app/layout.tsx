@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Dharashan & Priyadharshini | Wedding Invitation",
-  description: "Together with their families, invite you to celebrate their wedding ceremony and reception.",
+  title: "Dharshan & Deepika | Wedding Invitation",
+  description:
+    "Together with their families (Smt. Shoba & Sri. (Late) Lokesh and Smt. Padma & Sri. Sudappa), invite you to celebrate the wedding ceremony and reception of Dharshan & Deepika at SRI SATHYA SAI MARRIAGE HALL, Hosur.",
   openGraph: {
-    title: "Dharashan & Priyadharshini - Wedding Invitation",
-    description: "Join us in celebrating our special day.",
+    title: "Dharshan & Deepika - Wedding Invitation",
+    description: "Join us in celebrating our wedding celebrations on November 14 & 15, 2026.",
     type: "website",
   },
 };

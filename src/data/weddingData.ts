@@ -4,12 +4,13 @@ export interface EventItem {
   subtitle: string;
   date: string;
   time: string;
+  lagnam?: string;
   venue: string;
   address: string;
-  dressCode: string;
+  dressCode?: string;
   description: string;
   badge: string;
-  iconName: "Flame" | "Sparkles" | "Music" | "HeartHandshake" | "GlassWater";
+  iconName: "Flame" | "Sparkles" | "Music" | "HeartHandshake";
 }
 
 export interface GalleryPhoto {
@@ -43,15 +44,32 @@ export interface WeddingData {
     invitationQuote: string;
     subQuote: string;
   };
+  family: {
+    heading: string;
+    subheading: string;
+    groomParents: {
+      mother: string;
+      father: string;
+      label: string;
+      description: string;
+    };
+    brideParents: {
+      mother: string;
+      father: string;
+      label: string;
+      description: string;
+    };
+    traditionalNote: string;
+  };
   audio: {
     title: string;
     artist: string;
-    src: string; // fallback / placeholder audio URL
+    src: string;
   };
   hero: {
-    backgroundImage: string;
     welcomeText: string;
     locationBrief: string;
+    backgroundImage: string;
   };
   story: {
     heading: string;
@@ -85,142 +103,147 @@ export interface WeddingData {
 export const weddingData: WeddingData = {
   couple: {
     groom: {
-      firstName: "Dharashan",
-      fullName: "Dharashan Balasubramanian",
-      title: "Son of Mr. & Mrs. Balasubramanian",
-      parents: "S/o Mr. K. Balasubramanian & Mrs. Lakshmi Balasubramanian",
+      firstName: "Dharshan",
+      fullName: "Dharshan",
+      title: "Son of Smt. Shoba & Sri. (Late) Lokesh",
+      parents: "S/o Smt. Shoba & Sri. (Late) Lokesh",
     },
     bride: {
-      firstName: "Priyadharshini",
-      fullName: "Priyadharshini Sundaram",
-      title: "Daughter of Mr. & Mrs. Sundaram",
-      parents: "D/o Mr. R. Sundaram & Mrs. Geetha Sundaram",
+      firstName: "Deepika",
+      fullName: "Deepika",
+      title: "Daughter of Smt. Padma & Sri. Sudappa",
+      parents: "D/o Smt. Padma & Sri. Sudappa",
     },
-    monogram: "D & P",
-    hashtag: "#DharashanWedsPriya",
-    weddingDateISO: "2026-12-11T09:00:00",
-    displayDate: "Friday, December 11, 2026",
-    displayTime: "Muhurtham: 9:00 AM – 10:30 AM",
+    monogram: "D & D",
+    hashtag: "#DharshanWedsDeepika",
+    weddingDateISO: "2026-11-15T07:00:00",
+    displayDate: "Saturday 14 & Sunday 15, November 2026",
+    displayTime: "Muhurtham: 7:00 AM – 7:45 AM (Lagnam: Vruschika)",
     invitationQuote:
       "Two souls with but a single thought, two hearts that beat as one.",
     subQuote:
-      "With the blessings of our parents and elders, we joyfully invite you to grace the auspicious occasion of our wedding ceremony and celebrate the beginning of our forever.",
+      "Together with our families, we invite you to grace the auspicious occasion of our wedding ceremony and celebrate the beginning of our forever.",
+  },
+  family: {
+    heading: "With The Blessings Of Our Families",
+    subheading: "Traditional Honor & Heritage",
+    groomParents: {
+      mother: "Smt. Shoba",
+      father: "Sri. (Late) Lokesh",
+      label: "Groom's Parents",
+      description: "Heartily invite you to bestow your warm blessings upon their beloved son Dharshan.",
+    },
+    brideParents: {
+      mother: "Smt. Padma",
+      father: "Sri. Sudappa",
+      label: "Bride's Parents",
+      description: "Warmly invite you to grace the auspicious wedding ceremony of their cherished daughter Deepika.",
+    },
+    traditionalNote:
+      "Your benevolent presence, prayers, and blessings are our greatest treasure as our families unite in eternal joy.",
   },
   audio: {
-    title: "Romantic Flute & Strings Melody",
-    artist: "Traditional Acoustic Wedding Harmony",
-    // Royalty-free peaceful wedding flute/ambient mp3 placeholder
+    title: "Sacred Shehnai & Sitar Harmony",
+    artist: "Traditional Acoustic Wedding Melody",
     src: "https://actions.google.com/sounds/v1/ambiences/outdoor_ambience_quiet.ogg",
   },
   hero: {
-    welcomeText: "We Invite You To Celebrate The Wedding Of",
-    locationBrief: "Chennai, Tamil Nadu • India",
-    backgroundImage: "/images/couple.jpg",
+    welcomeText: "We Cordially Invite You To The Wedding Of",
+    locationBrief: "Hosur, Tamil Nadu",
+    backgroundImage: "/images/file_000000007eb88211b6b59af10e5753ca.png",
   },
   story: {
-    heading: "Our Journey of Love",
-    subheading: "A Glimpse Into Our Story",
+    heading: "A Union Blessed By Tradition",
+    subheading: "Eternal Companionship",
     quote:
-      "From unexpected meetings to shared sunrises, every step brought us to this divine promise.",
+      "Bound by timeless vows, guided by devotion, and showered with eternal love.",
     photos: [
       {
         id: "p1",
-        title: "Dharashan & Priyadharshini",
-        subtitle: "The Sacred Vows",
-        src: "/images/couple.jpg",
+        title: "Dharshan & Deepika",
+        subtitle: "Sacred Garland Exchange",
+        src: "/images/file_000000007eb88211b6b59af10e5753ca.png",
         aspect: "portrait",
-        caption: "Bound by sacred tradition, love, and eternal companionship.",
+        caption: "United in love and tradition, beginning our sacred journey together.",
       },
       {
         id: "p2",
-        title: "Golden Evenings",
-        subtitle: "Echoes of laughter",
-        src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80",
+        title: "Golden Smiles",
+        subtitle: "Cherished Moments",
+        src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80",
         aspect: "portrait",
-        caption: "Shared smiles under painted twilight skies.",
+        caption: "Every glance reflects a promise destined to last forever.",
       },
       {
         id: "p3",
-        title: "The Sacred Promise",
-        subtitle: "Hand in Hand",
+        title: "The Divine Steps",
+        subtitle: "Saptapadi Vows",
         src: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1000&q=80",
         aspect: "portrait",
-        caption: "Together we step forward into our new horizon.",
+        caption: "Seven steps taken together for eternity and happiness.",
       },
       {
         id: "p4",
-        title: "Eternal Tomorrow",
-        subtitle: "Forever Begins Now",
-        src: "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=1000&q=80",
+        title: "Blessings & Joy",
+        subtitle: "A Lifetime of Love",
+        src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80",
         aspect: "portrait",
-        caption: "Blessed with love, laughter, and endless memories.",
+        caption: "Surrounded by family, elders' blessings, and divine grace.",
       },
     ],
   },
   events: {
     heading: "Wedding Celebrations",
-    subheading: "Join Us In Every Blessed Moment",
+    subheading: "Join Us In Every Blessed Ceremony",
     items: [
       {
-        id: "sangeet",
-        title: "Sangeet & Celebration Night",
-        subtitle: "An Evening of Music, Dance & Henna",
-        date: "Thursday, December 10, 2026",
-        time: "6:00 PM Onwards",
-        venue: "The Lotus Grand Lawn",
-        address: "The Royal Heritage Palace, East Coast Road, Chennai - 600119",
-        dressCode: "Vibrant Indo-Western / Festive Cocktail",
+        id: "reception",
+        title: "Grand Reception",
+        subtitle: "An Evening of Joy & Musical Dinner",
+        date: "Saturday, 14-11-2026",
+        time: "6.30 Pm Onwards",
+        venue: "SRI SATHYA SAI MARRIAGE HALL",
+        address: "MGR Colleage Oppsite Hosur To Krishnagiri Road- Hosur",
+        dressCode: "Festive Attire / Evening Traditional",
         description:
-          "An electric evening of soulful music, family performances, dazzling choreography, and celebration under sparkling fairy lights.",
-        badge: "Day 1 Celebration",
-        iconName: "Music",
+          "Join us for a grand evening of joyous greetings, delicious feast, music, and welcoming the new couple with love.",
+        badge: "Reception Gala",
+        iconName: "Sparkles",
       },
       {
         id: "muhurtham",
         title: "Auspicious Muhurtham",
         subtitle: "The Sacred Vedic Wedding Ceremony",
-        date: "Friday, December 11, 2026",
-        time: "9:00 AM – 10:30 AM (followed by Feast)",
-        venue: "The Royal Heritage Mandapam",
-        address: "The Royal Heritage Palace, East Coast Road, Chennai - 600119",
-        dressCode: "Traditional Silk / South Indian Attire",
+        date: "Sunday, 15-11-2026",
+        time: "7.00 am To 7.45 am",
+        lagnam: "Vruschika",
+        venue: "SRI SATHYA SAI MARRIAGE HALL",
+        address: "MGR Colleage Oppsite Hosur To Krishnagiri Road- Hosur",
+        dressCode: "Traditional South Indian Attire",
         description:
-          "Witness the sacred Mangalya Dharanam, Kanyadaanam, and Saptapadi as we solemnize our eternal vows amidst fragrant jasmine and sacred fire.",
+          "Witness the sacred Mangalya Dharanam solemnized under the auspicious Vruschika Lagnam amidst Vedic hymns, auspicious nadaswaram, and elders' blessings.",
         badge: "Main Ceremony",
         iconName: "Flame",
-      },
-      {
-        id: "reception",
-        title: "Grand Evening Reception",
-        subtitle: "A Regal Dinner & Toast to New Beginnings",
-        date: "Friday, December 11, 2026",
-        time: "7:00 PM Onwards",
-        venue: "The Imperial Crystal Ballroom",
-        address: "The Royal Heritage Palace, East Coast Road, Chennai - 600119",
-        dressCode: "Regal Elegance / Tuxedo / Designer Saree",
-        description:
-          "Join us for an enchanting night of fine gourmet dining, live orchestra, champagne toasts, and joyous memories with family and friends.",
-        badge: "Gala Evening",
-        iconName: "Sparkles",
       },
     ],
   },
   location: {
-    heading: "Venue & Directions",
-    subheading: "We Cannot Wait To Welcome You",
-    venueName: "The Royal Heritage Palace & Convention Centre",
-    fullAddress: "45 Royal Heritage Boulevard, East Coast Road (ECR), Chennai, Tamil Nadu 600119",
-    landmark: "Adjacent to Golden Sands Beachfront, Near Akkarai",
-    // Embed URL with interactive Google Maps view
+    heading: "Venue & Navigation",
+    subheading: "SRI SATHYA SAI MARRIAGE HALL",
+    venueName: "SRI SATHYA SAI MARRIAGE HALL",
+    fullAddress: "MGR Colleage Oppsite Hosur To Krishnagiri Road- Hosur",
+    landmark: "Opposite MGR Arts & Science College, Hosur – Krishnagiri Highway",
+    // Embed URL focusing on Sri Sathya Sai Marriage Hall / MGR College Hosur
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7511677322964!2d80.2452288!3d12.9237248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525cf26d408543%3A0xc3191be08cb1745e!2sEast%20Coast%20Rd%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-    googleMapsUrl: "https://maps.google.com/?q=The+Royal+Heritage+Palace+ECR+Chennai",
-    qrCodeUrl: "/images/qr-code.png",
-    phoneContact: "+91 98765 43210 / +91 91234 56789",
-    contactName: "Wedding Hospitality Desk",
+      "https://maps.google.com/maps?q=Sri+Sathya+Sai+Marriage+Hall+Hosur+MGR+College&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    googleMapsUrl: "https://maps.app.goo.gl/dURMrwcLSaUBCaC78",
+    qrCodeUrl: "/images/google-maps-qr-code.svg",
+    phoneContact: "+91 98450 12345 / +91 94432 56789",
+    contactName: "Wedding Help Desk",
   },
   footer: {
-    message: "Thank you for being part of our story and blessing our new beginning.",
-    blessingsText: "With Warm Regards & Best Compliments from Balasubramanian & Sundaram Families",
+    message: "Thank you for being an indispensable part of our lives and blessing our union.",
+    blessingsText:
+      "With Best Compliments & Warm Regards From Smt. Shoba & Sri. (Late) Lokesh Family and Smt. Padma & Sri. Sudappa Family, Relatives & Friends",
   },
 };

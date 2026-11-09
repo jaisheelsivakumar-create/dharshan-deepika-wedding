@@ -26,7 +26,11 @@ export default function LocationSection() {
   };
 
   return (
-    <section id="location-section" className="relative py-24 px-4 sm:px-6 max-w-7xl mx-auto z-10">
+    <section
+      id="location-section"
+      className="relative py-24 px-4 sm:px-6 max-w-7xl mx-auto z-10"
+      suppressHydrationWarning
+    >
       {/* Decorative Glow */}
       <div className="absolute top-1/3 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
 

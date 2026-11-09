@@ -13,6 +13,7 @@ import {
   CheckCircle2,
   CalendarPlus,
   Shirt,
+  Sun,
 } from "lucide-react";
 import { weddingData, EventItem } from "@/data/weddingData";
 
@@ -37,7 +38,7 @@ export default function EventDetails() {
       `${weddingData.couple.groom.firstName} & ${weddingData.couple.bride.firstName}'s ${event.title}`
     );
     const details = encodeURIComponent(
-      `${event.description}\n\nDress Code: ${event.dressCode}\nVenue: ${event.venue}, ${event.address}`
+      `${event.description}\n${event.lagnam ? `Lagnam: ${event.lagnam}\n` : ""}\nVenue: ${event.venue}, ${event.address}`
     );
     const location = encodeURIComponent(`${event.venue}, ${event.address}`);
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&details=${details}&location=${location}`;
@@ -50,7 +51,7 @@ export default function EventDetails() {
   };
 
   return (
-    <section id="events-section" className="relative py-24 px-4 sm:px-6 max-w-7xl mx-auto z-10">
+    <section id="events-section" className="relative py-24 px-4 sm:px-6 max-w-7xl mx-auto z-10" suppressHydrationWarning>
       {/* Decorative backdrop glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-amber-600/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -85,12 +86,12 @@ export default function EventDetails() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-amber-100/70 text-sm sm:text-base font-serif italic max-w-lg mx-auto"
         >
-          We cordially invite you to witness and celebrate every divine ritual and joyous milestone with us.
+          We cordially invite you to join us in every blessed ceremony and celebrate our divine union.
         </motion.p>
       </div>
 
-      {/* 3D Tilt Event Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* 3D Tilt Event Cards Grid (2 cards centered) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {weddingData.events.items.map((event, index) => (
           <motion.div
             key={event.id}
@@ -107,18 +108,18 @@ export default function EventDetails() {
             {/* 3D Parallax Tilt Wrapper */}
             <Tilt
               perspective={1200}
-              tiltMaxAngleX={14}
-              tiltMaxAngleY={14}
+              tiltMaxAngleX={12}
+              tiltMaxAngleY={12}
               scale={1.03}
               transitionSpeed={1400}
               glareEnable={true}
-              glareMaxOpacity={0.25}
+              glareMaxOpacity={0.22}
               glareColor="#ffd700"
               glarePosition="all"
               glareBorderRadius="1.5rem"
               className="h-full"
             >
-              <div className="relative h-full flex flex-col justify-between rounded-3xl p-7 sm:p-8 glass-luxury border border-amber-500/30 box-shadow-deep-3d hover:border-amber-400 transition-colors duration-500 overflow-hidden">
+              <div className="relative h-full flex flex-col justify-between rounded-3xl p-7 sm:p-9 glass-luxury border border-amber-500/30 box-shadow-deep-3d hover:border-amber-400 transition-colors duration-500 overflow-hidden">
                 {/* Background ambient corner ornament */}
                 <div className="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
 
@@ -134,7 +135,7 @@ export default function EventDetails() {
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="text-2xl font-serif font-bold text-neutral-100 tracking-wide mb-1">
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-neutral-100 tracking-wide mb-1">
                     {event.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-amber-300/80 font-serif italic mb-6">
@@ -142,35 +143,51 @@ export default function EventDetails() {
                   </p>
 
                   {/* Details List */}
-                  <div className="space-y-3.5 mb-6 text-xs sm:text-sm text-neutral-300">
+                  <div className="space-y-4 mb-6 text-xs sm:text-sm text-neutral-300">
                     <div className="flex items-start gap-3">
                       <Calendar className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
-                      <span className="font-medium text-neutral-200">{event.date}</span>
+                      <span className="font-semibold text-neutral-100 text-sm sm:text-base">
+                        {event.date}
+                      </span>
                     </div>
 
                     <div className="flex items-start gap-3">
                       <Clock className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
-                      <span>{event.time}</span>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-medium text-neutral-200">{event.time}</span>
+                        {event.lagnam && (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs bg-amber-500/20 text-amber-300 border border-amber-400/40 font-serif">
+                            <Sun className="w-3 h-3 text-amber-300" />
+                            <span>Lagnam: {event.lagnam}</span>
+                          </span>
+                        )}
+                      </div>
                     </div>
 
                     <div className="flex items-start gap-3">
                       <MapPin className="w-4 h-4 text-rose-400 mt-0.5 shrink-0" />
                       <div>
-                        <p className="font-medium text-neutral-200">{event.venue}</p>
-                        <p className="text-xs text-neutral-400 mt-0.5">{event.address}</p>
+                        <p className="font-bold text-neutral-100 text-sm uppercase font-serif tracking-wide">
+                          {event.venue}
+                        </p>
+                        <p className="text-xs text-neutral-300/80 mt-0.5 leading-relaxed">
+                          {event.address}
+                        </p>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 pt-1">
-                      <Shirt className="w-4 h-4 text-amber-300 shrink-0" />
-                      <span className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-amber-200">
-                        {event.dressCode}
-                      </span>
-                    </div>
+                    {event.dressCode && (
+                      <div className="flex items-center gap-3 pt-1">
+                        <Shirt className="w-4 h-4 text-amber-300 shrink-0" />
+                        <span className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-amber-200">
+                          {event.dressCode}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-neutral-300/70 leading-relaxed font-sans border-t border-white/10 pt-4 mb-6">
+                  <p className="text-xs text-neutral-300/80 leading-relaxed font-sans border-t border-white/10 pt-4 mb-6">
                     {event.description}
                   </p>
                 </div>

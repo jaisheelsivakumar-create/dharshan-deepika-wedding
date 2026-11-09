@@ -3,6 +3,7 @@ import MusicPlayer from "@/components/MusicPlayer";
 import HeroSection from "@/components/HeroSection";
 import PhotoGallery from "@/components/PhotoGallery";
 import EventDetails from "@/components/EventDetails";
+import FamilySection from "@/components/FamilySection";
 import LocationSection from "@/components/LocationSection";
 import BlessingsSection from "@/components/BlessingsSection";
 import FooterSection from "@/components/FooterSection";
@@ -26,6 +27,9 @@ export default function Home() {
 
         {/* Event Celebrations with 3D Parallax Tilt Cards */}
         <EventDetails />
+
+        {/* Traditional Family & Parents Section */}
+        <FamilySection />
 
         {/* Location & Navigation Section (Google Map & QR Code) */}
         <LocationSection />
